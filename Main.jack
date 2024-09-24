@@ -1,0 +1,82 @@
+class Main{
+    field Car car;
+    field Array obstacles;
+    field int score;
+}
+
+// Construtor do jogo
+function void new(){
+    let car = Car.new();            //Criar o carro
+    let obstacles = Array.new(5);       //Criar o array de obstáculos 
+    let score = 0;
+    do Obstacle.initRandomGenerator(1234); // Gerador de números aleatórios
+    do fillObstacles();         //preencher os obstáculos
+    do runGameLoop();       //Iniciar o loop do jogo
+    return;
+}
+
+// A função que preenche os obstáculos
+function void fillObstacles(){
+    var int i;
+    let i = 0;
+    while (i < 5) {
+        let obstacles[i] = Obstacle.new();
+        let i = i + 1;
+    }
+    return;
+}
+
+// Loop principal do jogo
+function void runGameLoop(){
+    while (true){
+        do car.move();      //Controle do movimento do carro
+        do updateObstacles();       //Atualiza a posição dos obstáculos
+        do checkCollisions();       //Colisão
+        do draw();      //Desenha o jogo na tela FINALMENTE CONSIGO FAZER ISSO HAHAHAHAHA
+        let score = score + 1;
+    }
+}
+
+// Função para desenhar o carro na tela
+function void draw() {
+    do car.draw();      //Desenho do carro
+    var int i;
+    let i = 0;
+    while (i < 5){
+        do obstacles[i].draw();         //Desenho dos obstáculos
+        let i = i +1;
+    }
+    return ;
+}
+
+// OIA A PAREDE !
+function void checkCollisions(){
+    var int i;
+    let i = 0;
+    while (i < 5){
+        if (car.collidesWith(obstacles[i])){
+            do gameOver();          //IH BATEU
+        }
+        let i = i +1;
+    }
+    return ;
+}
+
+// Função pra Game Over 
+function void gameOver(){
+    do Output.printString("Game Over");
+    do Output.println();
+    do Output.printInt(score);      //Exibir a pontuação final 
+    do Sys.halt();                  //The End
+}
+
+//Atualiza a posição dos obstáculos
+function void updateObstacles(){
+    var int i;
+    let i = 0;
+    while (i < 5){
+        do obstacles[i].move();         //Aqui é o que faz o obstáculo vir descendo
+        let i = i + 1;
+    }
+    return ;
+}

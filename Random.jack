@@ -1,0 +1,15 @@
+class Random {
+    field int seed ;
+
+    constructor Random new(int initialSeed){
+        let seed = initialSeed;
+        return this;
+    }
+
+    //Método para gerar um número pseudo-aleatório entre 0 e max 
+
+    method int next(int max){
+        let seed = (seed * 8253729 + 2396403) & 32767;
+        return seed % max;
+    }
+}

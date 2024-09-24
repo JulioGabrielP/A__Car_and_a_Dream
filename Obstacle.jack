@@ -1,0 +1,44 @@
+class Obstacle {
+    field int x , y;
+
+    //Construtor
+    constructor Obstacle new(){
+        //Definir uma posição aleatória de x e y
+        let x = randomGenerator.next(32);
+        let y = 0;
+        return this;
+    }
+
+    //Método para mover o obstáculo para baixo
+    method void move(){
+        let y = y +1;
+        if (y>30) {
+            let x = randomGenerator.next(32); //Gera uma nova posição x aleatória
+            let y = 0;      //Reseta pro topo
+        }
+        return;
+    }
+
+    //Metodo pra desenhar o obstáculo na tela
+    method void draw(){
+        var int memAddress;
+        let memAddress = 16384 + x + y * 32;
+        do Memory.poke(memAddress, 1); 
+        return;
+    }
+
+    //Métodos para obter a posição do obstáculo
+    method int getX(){
+        return x;
+    }
+    method int getY(){
+        return y;
+    }
+
+
+    //Inicializador do gerador de números aleatórios
+    function void initRandomGenerator(int seed){
+        let randomGenerator = Random.new(seed);
+        return;
+    }
+}
