@@ -1,0 +1,168 @@
+function Car.new 0
+push constant 2
+call Memory.alloc 1
+pop pointer 0
+push constant 40
+pop this 0
+push constant 10
+pop this 1
+push pointer 0
+return
+function Car.move 0
+push argument 0
+pop pointer 0
+push constant 203
+call Keyboard.keyPressed 1
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push this 0
+push constant 1
+sub
+pop this 0
+label IF_FALSE0
+push constant 205
+call Keyboard.keyPressed 1
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push this 0
+push constant 1
+add
+pop this 0
+label IF_FALSE1
+push constant 0
+return
+function Car.draw 1
+push argument 0
+pop pointer 0
+push constant 16384
+push this 0
+add
+push this 1
+push constant 32
+call Math.multiply 2
+add
+pop local 0
+push local 0
+push constant 0
+add
+push constant 960
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 1056
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 2064
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 12300
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 12300
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 12300
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 4104
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 4104
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push constant 4104
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 288
+add
+push constant 4104
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 320
+add
+push constant 4104
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 352
+add
+push constant 12300
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 384
+add
+push constant 12300
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 416
+add
+push constant 16380
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 448
+add
+push constant 12300
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 480
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function Car.collidesWith 0
+push argument 0
+pop pointer 0
+push this 0
+push argument 1
+call Obstacle.getX 1
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push this 1
+push argument 1
+call Obstacle.getY 1
+eq
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push constant 0
+not
+return
+label IF_FALSE1
+label IF_FALSE0
+push constant 0
+return

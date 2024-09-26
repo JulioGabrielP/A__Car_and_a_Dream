@@ -12,10 +12,10 @@ class Car {
     //Função pra dirigir o carro 
     method void move(){
         if (Keyboard.keyPressed(203)) {
-            let this.x = this.x - 1;
+            let x = x - 1;
         }
         if (Keyboard.keyPressed(205)) {
-            let this.x = this.x + 1;
+            let x = x + 1;
         }
         return;
     }
@@ -23,7 +23,7 @@ class Car {
     // Função pra desenhar o carro
     method void draw(){
         var int memAddress;
-        let memAddress = 16384 + this.x + (this.y * 32);
+        let memAddress = 16384 + x + (y * 32);
         do Memory.poke(memAddress + 0, 960);
         do Memory.poke(memAddress + 32, 1056);
         do Memory.poke(memAddress + 64, 2064);
@@ -44,8 +44,10 @@ class Car {
     }
     // Verificando a batida
     method boolean collidesWith(Obstacle obstacle) {
-        if (this.x == obstacle.getX() && this.y == obstacle.getY()) {
-            return true;
+        if (x = obstacle.getX()) {
+            if(y = obstacle.getY()){
+                return true;
+            }
         }
         return false;
     }
