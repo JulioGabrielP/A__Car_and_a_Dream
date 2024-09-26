@@ -1,10 +1,11 @@
 class Obstacle {
     field int x , y;
+    field Random randomGenerator;
 
     //Construtor
     constructor Obstacle new(){
         //Definir uma posição aleatória de x e y
-        let x = randomGenerator.next(32);
+        let x = randomGenerator.randRange();
         let y = 0;
         return this;
     }
@@ -13,7 +14,7 @@ class Obstacle {
     method void move(){
         let y = y +1;
         if (y>30) {
-            let x = randomGenerator.next(32); //Gera uma nova posição x aleatória
+            let x = randomGenerator.randRange(); //Gera uma nova posição x aleatória
             let y = 0;      //Reseta pro topo
         }
         return;
@@ -36,9 +37,4 @@ class Obstacle {
     }
 
 
-    //Inicializador do gerador de números aleatórios
-    function void initRandomGenerator(int seed){
-        let randomGenerator = Random.new(seed);
-        return;
-    }
 }
